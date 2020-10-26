@@ -5,13 +5,19 @@
     <link href="{% static "movieweb/css/main.css" %}" rel="stylesheet" type="text/css">
 </head>
 <body>
-<header>
-
-</header>
-<main>
-{% block content %}{% endblock %}
-</main>
-<footer>
-</footer>
+    <header>
+        <nav>
+        <ul>
+            <li><a href="/movieweb/">Home</a></li>
+            <li><a href="/movieweb/1">Movie</a></li>
+            <li><a href="/movieweb/star">Stars</a></li>
+        </ul>
+        </nav>
+    </header>
+    <main>
+    {% block content %}{% endblock %}
+    </main>
+    <footer>
+    </footer>
 </body>
 </html>

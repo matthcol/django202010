@@ -2,5 +2,10 @@
 
 {% block content %}
 <h1>Movies fanzone</h1>
-Today we have {{ nbMovies }} movies registered.
+Today we have {{ movies|length }} movies registered.
+<ul>
+{% for m in movies|dictsort:"title" %}
+    <li>{{ m.title }} ({{ m.year }}, {{ m.duration|default:"nc"}} mn)</li>
+{% endfor %}
+</ul>
 {% endblock %}
