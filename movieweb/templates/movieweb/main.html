@@ -8,9 +8,9 @@
     <header>
         <nav>
         <ul>
-            <li><a href="/movieweb/">Home</a></li>
-            <li><a href="/movieweb/1">Movie</a></li>
-            <li><a href="/movieweb/star">Stars</a></li>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'detail' 1 %}">Movie</a></li>
+            <li><a href="{% url 'star' %}">Stars</a></li>
         </ul>
         </nav>
     </header>

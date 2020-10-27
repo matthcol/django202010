@@ -3,10 +3,12 @@
 {% block content %}
 <h1>Stars fanzone</h1>
 <p>#{{ stars }}#</p>
-Today we have {{ stars|length }} stars registered.
+Today we have {{ stars|length }} star{{ stars|length|pluralize }} registered.
 <ul>
 {% for s in stars %}
     <li>{{ s.name }} ({{ s.birthdate|date:"Y" }})</li>
+{% empty %}
+    <li>(empty list)</li>
 {% endfor %}
 </ul>
 {% endblock %}

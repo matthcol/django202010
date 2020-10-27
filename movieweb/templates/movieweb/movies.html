@@ -1,11 +1,19 @@
 {% extends "movieweb/main.html" %}
 
 {% block content %}
-<h1>Movies fanzone</h1>
+<h1>{{title}}</h1>
+<div>
 Today we have {{ movies|length }} movies registered.
+</div>
+<div>
+{% if movies %}
 <ul>
 {% for m in movies|dictsort:"title" %}
     <li>{{ m.title }} ({{ m.year }}, {{ m.duration|default:"nc"}} mn)</li>
 {% endfor %}
 </ul>
+{% else %}
+(empty list)
+{% endif %}
+</div>
 {% endblock %}
