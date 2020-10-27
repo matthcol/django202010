@@ -1,0 +1,17 @@
+{% extends "movieweb/main.html" %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block summary %}
+Welcome on dbmovie explorer and management app.
+{% endblock %}
+
+{% block content %}
+<ul>
+<li>At this time: {{ now }}</li>
+<li>Movies count: {{ movie_count }}</li>
+<li>Stars count: {{ star_count }}</li>
+</ul>
+{% endblock %}

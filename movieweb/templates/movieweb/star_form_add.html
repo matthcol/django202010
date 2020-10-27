@@ -1,0 +1,11 @@
+{% extends "movieweb/star_form.html" %}
+
+{% block title %}
+Star creation
+{% endblock %}
+
+{% block content %}
+    {% with submit_name="Add" %}
+        {{ block.super }}
+    {% endwith %}
+{% endblock %}

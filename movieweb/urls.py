@@ -4,12 +4,15 @@ from . import views
 from .views import StarCreate, StarUpdate, StarDelete
 
 urlpatterns = [
+# MOVIE urls
     path('', views.index, name='index'),
-    path('<int:movie_id>/', views.detail, name='detail'),
-    path('star/', views.star, name='star'),
-#    path('<str:title>/', views.by_title, name='by_title'),
-    path('by_year/<int:year>/', views.by_year, name='by_year'),
-#    CRUD
+    path('movie/', views.movies, name='movies'),
+    path('movie/<int:movie_id>/', views.movie, name='movie-detail'),
+    path('movie/by_year/', views.movies_by_year, name='movies-by-year'),
+# STAR urls    
+    path('star/', views.stars, name='stars'),
+    path('star/<int:star_id>', views.star, name='star-detail'),
+    # CRUD with forms
     path('star/add/', StarCreate.as_view(), name='star-add'),
     path('star/<int:pk>/update/', StarUpdate.as_view(), name='star-update'),
     path('star/<int:pk>/delete/', StarDelete.as_view(), name='star-delete'),

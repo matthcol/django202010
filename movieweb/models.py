@@ -1,16 +1,22 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
         
 class Star(models.Model):
     id=models.IntegerField(primary_key=True)
     name=models.CharField(max_length=150)
-    birthdate=models.DateField(null=True)
+    birthdate=models.DateField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.name} ({self.birthdate}, #{self.id})"
     
-
+    def get_absolute_url(self):
+        if self.pk is None:
+            return reverse('stars')
+        else:
+            return reverse('star-detail', kwargs={'star_id': self.pk})
+    
     class Meta:
         db_table = 'stars'
 

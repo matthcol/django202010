@@ -1,0 +1,27 @@
+{% extends "movieweb/main.html" %}
+
+{% block title %}
+{{ entity_name }}: {{ title }}
+{% endblock %}
+
+{% block summary %}
+{{ entity_name }} summary:
+<ul>
+    <li>Count: {{ entity_list|length }} 
+        {{ entity_name|lower }}{{ entity_list|length|pluralize }} 
+        in database</li>
+    {% if entity_list.query %}<li>SQL: {{ entity_list.query }} </li>{% endif %}
+</ul>
+{% endblock %}
+
+
+{% block content %}
+{{ entity_name }} listing: {% block add_item %}{% endblock %}
+<ul>
+{% for entity in entity_list %}
+    <li>{% block entity_item %}{% endblock %}</li>
+{% empty %}
+    <li>(empty list)</li>
+{% endfor %}
+</ul>
+{% endblock %}

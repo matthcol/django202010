@@ -1,0 +1,34 @@
+{% extends "movieweb/entity_listing.html" %}
+
+{% block entity_item %}
+<a href="{% url 'star-detail' entity.id %}">
+    {{ entity.name }} 
+    ({{ entity.birthdate|date:"Y"|default:"nc" }})
+</a>
+<a class="modify" href="{% url 'star-update' entity.id %}">*</a>
+<a class="delete" href="{% url 'star-delete' entity.id %}">-</a>
+{% endblock %}
+
+
+{% block add_item %}
+<a class="add" href="{% url 'star-add' %}">+</a>
+{% endblock %}
+
+{% block title %}
+    {% with entity_name="Star" %}
+        {{ block.super }}
+    {% endwith %}
+{% endblock %}
+
+{% block summary %}
+    {% with entity_list=stars entity_name="Star" %}
+        {{ block.super }}
+    {% endwith %}
+{% endblock %}
+
+
+{% block content %}
+    {% with entity_list=stars entity_name="Star" %}
+        {{ block.super }}
+    {% endwith %}
+{% endblock %}

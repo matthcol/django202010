@@ -9,13 +9,26 @@
         <nav>
         <ul>
             <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'detail' 1 %}">Movie</a></li>
-            <li><a href="{% url 'star' %}">Stars</a></li>
+            <li><a href="{% url 'movies' %}">Movies</a></li>
+            <li><a href="{% url 'stars' %}">Stars</a></li>
         </ul>
         </nav>
     </header>
     <main>
+    <section class="title">
+    <h1>
+    {% block title %}{% endblock %}
+    </h1>
+    </section>
+    <section class="summary">
+    {% block summary %}{% endblock %}
+    </section>
+    <section class="search">
+    {% block search %}{% endblock %}
+    </section>
+    <section class="content">
     {% block content %}{% endblock %}
+    </section>
     </main>
     <footer>
     </footer>

@@ -1,19 +1,40 @@
-{% extends "movieweb/main.html" %}
+{% extends "movieweb/entity_listing.html" %}
+
+{% block entity_item %}
+<a href="{% url 'movie-detail' entity.id %}">
+    {{ entity.title}} 
+    ({{ entity.year|default:"nc" }}, 
+    {{ entity.duration|default:"nc"}} 
+    {% if entity.duration %}mn{% endif %})</a>
+{% endblock %}
+
+{% block title %}
+    {% with entity_name="Movie" %}
+        {{ block.super }}
+    {% endwith %}
+{% endblock %}
+
+{% block summary %}
+    {% with entity_list=movies entity_name="Movie" %}
+        {{ block.super }}
+    {% endwith %}
+{% endblock %}
+
+{% block search %}
+Movie search:
+<ul><li>
+    <form method="get" action="{% url 'movies-by-year' %}">
+        <label for="year">Year</label>
+        <input name="year" value="2020" type="number" min="1850">
+        <input value="search" type="submit">
+    </form>
+</li>    
+</ul>
+{% endblock %}
 
 {% block content %}
-<h1>{{title}}</h1>
-<div>
-Today we have {{ movies|length }} movies registered.
-</div>
-<div>
-{% if movies %}
-<ul>
-{% for m in movies|dictsort:"title" %}
-    <li>{{ m.title }} ({{ m.year }}, {{ m.duration|default:"nc"}} mn)</li>
-{% endfor %}
-</ul>
-{% else %}
-(empty list)
-{% endif %}
-</div>
+    {% with entity_list=movies entity_name="Movie" %}
+        {{ block.super }}
+    {% endwith %}
 {% endblock %}
+

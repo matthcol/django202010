@@ -1,8 +1,12 @@
 {% extends "movieweb/main.html" %}
 
-{% block content %}
-<form method="post">{% csrf_token %}
-    <input type="submit" text="Confirm" value="yes">
-</form>
+{% block title %}
+Star delete confirmation
+{% endblock %}
 
+{% block content %}
+Are you sure to delete {{ object }}
+<form method="post">{% csrf_token %}
+    <input type="submit" value="Confirm">
+</form>
 {% endblock %}

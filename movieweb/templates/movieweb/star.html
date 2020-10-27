@@ -1,14 +1,14 @@
 {% extends "movieweb/main.html" %}
 
+{% block title %}
+{{ star.name }} ({{ star.birthdate|default:"nc" }})
+{% endblock %}
+
 {% block content %}
-<h1>Stars fanzone</h1>
-<p>#{{ stars }}#</p>
-Today we have {{ stars|length }} star{{ stars|length|pluralize }} registered.
-<ul>
-{% for s in stars %}
-    <li>{{ s.name }} ({{ s.birthdate|date:"Y" }})</li>
-{% empty %}
-    <li>(empty list)</li>
-{% endfor %}
-</ul>
+<article>
+Filmography as director: {{ star.directedMovies.all }}
+</article>
+<article>
+Filmography as actor: {{ star.playedMovies.all }}
+</article>
 {% endblock %}

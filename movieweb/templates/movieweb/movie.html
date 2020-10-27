@@ -1,6 +1,14 @@
 {% extends "movieweb/main.html" %}
 
+{% block title %}
+{{ movie.title }} ({{ movie.year }})
+{% endblock %}
+
 {% block content %}
-<h1>Movie detail</h1>
-Detail on movie {{ movie_id }}
+<article>
+Director: {{ movie.director }}
+</article>
+<article>
+Casting: {{ movie.actors.all }}
+</article>
 {% endblock %}
