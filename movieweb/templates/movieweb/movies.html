@@ -6,6 +6,11 @@
     ({{ entity.year|default:"nc" }}, 
     {{ entity.duration|default:"nc"}} 
     {% if entity.duration %}mn{% endif %})</a>
+<a class="modify" href="{% url 'movie-update' entity.id %}">*</a>
+{% endblock %}
+
+{% block add_item %}
+<a class="add" href="{% url 'movie-add' %}">+</a>
 {% endblock %}
 
 {% block title %}

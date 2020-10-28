@@ -8,6 +8,6 @@ class StarForm(ModelForm):
     class Meta:
         model = Star
         fields = ['name', 'birthdate']
-        widgets = {
-            'birthdate': MyDateInput()
-        }
+        # widgets = {
+        #     'birthdate': MyDateInput()
+        # }

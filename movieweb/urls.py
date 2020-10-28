@@ -1,7 +1,7 @@
 from django.urls import path
 
 from . import views
-from .views import StarCreate, StarUpdate, StarDelete
+from .views import StarCreate, StarUpdate, StarDelete, MovieCreate, MovieUpdate
 
 urlpatterns = [
 # MOVIE urls
@@ -9,6 +9,9 @@ urlpatterns = [
     path('movie/', views.movies, name='movies'),
     path('movie/<int:movie_id>/', views.movie, name='movie-detail'),
     path('movie/by_year/', views.movies_by_year, name='movies-by-year'),
+    # CRUD with forms
+    path('movie/add/', MovieCreate.as_view(), name='movie-add'),
+    path('movie/<int:pk>/update/', MovieUpdate.as_view(), name='movie-update'),
 # STAR urls    
     path('star/', views.stars, name='stars'),
     path('star/<int:star_id>', views.star, name='star-detail'),

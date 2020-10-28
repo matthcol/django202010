@@ -50,7 +50,8 @@ def stars(request):
     #         {'name': 'Michael J. Fox', 'birthdate': date(1961,6,9)},
     #         {'name': 'Christopher Lloyd', 'birthdate': date(1938,10,22)},
     #         ]
-    stars = Star.objects.all() 
+    stars = Star.objects \
+        .filter(birthdate__year__gt=1990) #.all() 
     return render(request, 'movieweb/stars.html', 
                   {'stars':stars, 'title': 'most famous'})
 
@@ -64,7 +65,7 @@ def star(request, star_id):
 
 class StarCreate(CreateView):
     model = Star
-    #fields = ['name', 'birthdate']
+    # fields = ['name', 'birthdate']
     form_class=StarForm
     template_name='movieweb/star_form_add.html'
   
@@ -78,6 +79,15 @@ class StarDelete(DeleteView):
     model = Star
     success_url = reverse_lazy('stars')
 
+class MovieCreate(CreateView):
+    model = Movie
+    fields = ['title', 'year', 'duration', 'director']
+    template_name='movieweb/movie_form_add.html'
+
+class MovieUpdate(UpdateView):
+    model = Movie
+    fields = ['title', 'year', 'duration', 'director', 'actors']
+    template_name='movieweb/movie_form_modify.html'
 
 
 
