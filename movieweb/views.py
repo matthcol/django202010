@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.urls import reverse_lazy, reverse
 from django.views.generic.edit import CreateView, UpdateView ,DeleteView
 from django.forms import DateInput, NumberInput, DateField
+from django.contrib.auth.decorators import login_required
 from datetime import date
 from .models import Movie, Star
 from .forms import StarForm
@@ -26,6 +27,7 @@ def movies(request):
     movies = Movie.objects.all()
     return render(request, 'movieweb/movies.html', 
                   {'movies': movies, 'title': 'last news'})
+
 
 def movie(request, movie_id):
     movie = Movie.objects \
@@ -55,6 +57,7 @@ def stars(request):
     return render(request, 'movieweb/stars.html', 
                   {'stars':stars, 'title': 'most famous'})
 
+@login_required
 def star(request, star_id):
     star = Star.objects \
         .prefetch_related('directedMovies') \

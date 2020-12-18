@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'rest_framework',
+    'django_filters',
+    # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # for debug purpose:
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'movies.urls'
@@ -76,17 +82,20 @@ WSGI_APPLICATION = 'movies.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'sqlite_dev': {
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-    'default': {
+    'pg': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'dbmovie',
         'USER': 'movie',
         'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': '5432',    
+        'TEST': {
+            'NAME': 'dbmovietest',
+        }
     }
 }
 
@@ -128,3 +137,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}
+
+INTERNAL_IPS = [
+    # debug:
+    '127.0.0.1',
+]
+
+
+
+

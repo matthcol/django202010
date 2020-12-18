@@ -1,7 +1,7 @@
 {% extends "movieweb/entity_listing.html" %}
 
 {% block entity_item %}
-<a href="{% url 'movie-detail' entity.id %}">
+<a href="{% url 'movie-info' entity.id %}">
     {{ entity.title}} 
     ({{ entity.year|default:"nc" }}, 
     {{ entity.duration|default:"nc"}} 

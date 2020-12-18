@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+# for debug purpose:
+import debug_toolbar
 
 urlpatterns = [
     path('movieweb/', include('movieweb.urls')),    
+    path('movieapi/', include('movieweb.apirest.urls')), 
     path('admin/', admin.site.urls),
+    path('__debug__/', include(debug_toolbar.urls)),
 ]
